@@ -43,7 +43,7 @@ function showWeatherData(data){
     iconInfo.src = `https://openweathermap.org/img/wn/${icon}@2x.png` //verificar en la doc la muestra de imagen
 
     const descriptionInfo = document.createElement('p')
-    descriptionInfo.textContent = `La descripción meteorológica es ${description}`
+    descriptionInfo.textContent = `La descripción meteorológica es: ${description}`
 
     divResponseData.appendChild(cityInfo)
     divResponseData.appendChild(tempInfo)
