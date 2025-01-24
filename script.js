@@ -18,3 +18,15 @@ function fetchWeather(city){
     .then(data => data.json())
     .then(data => console.log(data))
 }
+
+function showWeatherData(data){
+    const divResponseData = document.getElementById('responseData')
+    divResponseData.innerHTML = ''
+
+    const cityName = data.name //Chequeado en Postman donde recibe el City Name
+    const countryName = data.sys.country //idem anterior, se encuentra dentro de sys como country
+    const temp = data.main.temp
+    const humidity = data.main.humidity
+    const description = data.weather[0].description //Array que contiene varios climas por lo que accede al 0
+    const icon = data.weather[0].icon //idem anterior
+}
