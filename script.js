@@ -16,7 +16,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
 function fetchWeather(city){
     fetch(`${urlBase}?q=${city}&appid=${API_KEY}&lang=es`)
     .then(data => data.json())
-    .then(data => console.log(data))
+    .then(data => showWeatherData(data))
 }
 
 function showWeatherData(data){
@@ -29,4 +29,26 @@ function showWeatherData(data){
     const humidity = data.main.humidity
     const description = data.weather[0].description //Array que contiene varios climas por lo que accede al 0
     const icon = data.weather[0].icon //idem anterior
+
+    const cityInfo = document.createElement('h2')
+    cityInfo.textContent = `${cityName}, ${countryName}`
+
+    const tempInfo = document.createElement('p')
+    tempInfo.textContent = `La temperatura es: ${Math.floor(temp-diffKelvin)}°C` //Calcula diferencia entre K y C, redondea
+
+    const humidityInfo = document.createElement('p')
+    humidityInfo.textContent = `La humedad es del ${humidity}%`
+
+    const iconInfo = document.createElement('img')
+    iconInfo.src = `https://openweathermap.org/img/wn/${icon}@2x.png` //verificar en la doc la muestra de imagen
+
+    const descriptionInfo = document.createElement('p')
+    descriptionInfo.textContent = `La descripción meteorológica es ${description}`
+
+    divResponseData.appendChild(cityInfo)
+    divResponseData.appendChild(tempInfo)
+    divResponseData.appendChild(humidityInfo)
+    divResponseData.appendChild(iconInfo)
+    divResponseData.appendChild(descriptionInfo)
+
 }
